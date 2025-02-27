@@ -25,12 +25,15 @@ const options = {
     } else {
       startButton.disabled = false;
     }
-    clearInterval(intervalId); 
-    timerDisplay.textContent = '00:00:00';
   },
 };
 
 flatpickr(dateTimePicker, options);
+
+const daysDisplay = document.querySelector('[data-days]');
+const hoursDisplay = document.querySelector('[data-hours]');
+const minutesDisplay = document.querySelector('[data-minutes]');
+const secondsDisplay = document.querySelector('[data-seconds]');
 
 let intervalId;
 
@@ -50,10 +53,10 @@ startButton.addEventListener('click', () => {
       dateTimePicker.disabled = false;
     } else {
       const { days, hours, minutes, seconds } = convertMs(timeLeft);
-      document.querySelector('[data-days]').textContent = addLeadingZero(days);
-      document.querySelector('[data-hours]').textContent = addLeadingZero(hours);
-      document.querySelector('[data-minutes]').textContent = addLeadingZero(minutes);
-      document.querySelector('[data-seconds]').textContent = addLeadingZero(seconds);
+      daysDisplay.textContent = addLeadingZero(days);
+      hoursDisplay.textContent = addLeadingZero(hours);
+      minutesDisplay.textContent = addLeadingZero(minutes);
+      secondsDisplay.textContent = addLeadingZero(seconds);
     }
   }, 1000);
 });
